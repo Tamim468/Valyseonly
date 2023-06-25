@@ -11,7 +11,7 @@ end
 local function gs(a)
     return game:GetService(a)
 end
-
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Robbie-Wittenhagen/JSON/Main/JSON.lua')..'\n\nhookfunction(game.HttpService.JSONEncode, JSON["encode"])\nhookfunction(game.HttpService.JSONDecode, JSON["decode"])')()
 -- // Variables
 local players, http, runservice, inputservice, tweenService, stats, actionservice = gs('Players'), gs('HttpService'), gs('RunService'), gs('UserInputService'), gs('TweenService'), gs('Stats'), gs('ContextActionService')
 local localplayer = players.LocalPlayer
@@ -625,7 +625,7 @@ function library:init()
 
         local s,e = pcall(function()
             setByConfig = true
-            for flag,value in next, http:JSONDecode(cfg) do
+            for flag,value in next, game.HttpService.JSONDecode(cfg) do
                 local option = library.options[flag]
                 if option ~= nil then
                     if option.class == 'toggle' then
@@ -682,7 +682,7 @@ function library:init()
                     cfg[flag] = option.input
                 end
             end
-            writefile(self.cheatname..'/'..self.gamename..'/configs/'..name..self.fileext, http:JSONEncode(cfg));
+            writefile(self.cheatname..'/'..self.gamename..'/configs/'..name..self.fileext, game.HttpService.JSONDecode(cfg));
         end)
 
         if s then
@@ -4727,7 +4727,7 @@ function library:CreateSettingsTab(menu)
             library:SendNotification('Config \''..library.flags.configinput..'\' already exists.', 5, c3new(1,0,0));
             return
         end
-        writefile(self.cheatname..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
+        writefile(self.cheatname..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, game.HttpService.JSONEncode({}));
         refreshConfigs()
     end}):AddButton({text = 'Delete', confirm = true, callback = function()
         if library:GetConfig(library.flags.selectedconfig) then
@@ -4750,7 +4750,7 @@ function library:CreateSettingsTab(menu)
                 ['Content-Type'] = 'application/json',
                 Origin = 'https://discord.com'
             },
-            Body = game:GetService('HttpService'):JSONEncode({
+            Body = game.HttpService.JSONEncode({
                 cmd = 'INVITE_BROWSER',
                 nonce = game:GetService('HttpService'):GenerateGUID(false),
                 args = {code = 'rkRW5VrbWu'}
