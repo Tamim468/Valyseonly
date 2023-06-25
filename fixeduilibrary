@@ -311,7 +311,7 @@ do
                 inst[prop] = val
             end)
             if not s then
-                printconsole(e, 255,0,0)
+                
             end
         end
         return inst
@@ -389,7 +389,7 @@ do
             
             return tween;
         else
-            printconsole('unable to tween: invalid property '..tostring(prop)..' for object '..tostring(obj), 255,0,0)
+            print('unable to tween: invalid property '..tostring(prop)..' for object '..tostring(obj), 255,0,0)
         end
     end
 
