@@ -602,14 +602,14 @@ function library:init()
     makefolder(self.cheatname..'/assets')
     makefolder(self.cheatname..'/'..self.gamename)
     makefolder(self.cheatname..'/'..self.gamename..'/configs');
-
+   print("1")
     function self:SetTheme(theme)
         for i,v in next, theme do
             self.theme[i] = v;
         end
         self.UpdateThemeColors();
     end
-
+   print("2")
     function self:GetConfig(name)
         if isfile(self.cheatname..'/'..self.gamename..'/configs/'..name..self.fileext) then
             return readfile(self.cheatname..'/'..self.gamename..'/configs/'..name..self.fileext);
@@ -622,7 +622,7 @@ function library:init()
             self:SendNotification('Error loading config: Config does not exist. ('..tostring(name)..')', 5, c3new(1,0,0));
             return
         end
-
+   print("3")
         local s,e = pcall(function()
             setByConfig = true
             for flag,value in next, game.HttpService.JSONDecode(cfg) do
@@ -659,7 +659,7 @@ function library:init()
             self:SendNotification('Error saving config: Config does not exist. ('..tostring(name)..')', 5, c3new(1,0,0));
             return
         end
-
+   print("4")
         local s,e = pcall(function()
             local cfg = {};
             for flag,option in next, self.options do
@@ -691,7 +691,7 @@ function library:init()
             self:SendNotification('Error saving config: '..tostring(e)..'. ('..tostring(name)..')', 5, c3new(1,0,0));
         end
     end
-
+   print("5")
     for i,v in next, self.images do
         if not isfile(self.cheatname..'/assets/'..i..'.oh') then
             writefile(self.cheatname..'/assets/'..i..'.oh', game:HttpGet(v))
@@ -714,7 +714,7 @@ function library:init()
             self.cursor2.PointC = self.cursor1.PointC + newVector2(1, 1)
         end
     end
-
+   print("6")
     local screenGui = Instance.new('ScreenGui');
     screenGui.Parent = game:GetService('CoreGui');
     screenGui.Enabled = true;
@@ -730,7 +730,7 @@ function library:init()
     utility:Connection(library.unloaded, function()
         screenGui:Destroy()
     end)
-
+   print("7")
     utility:Connection(inputservice.InputBegan, function(input, gpe)
         if self.hasInit then
             if input.KeyCode == self.toggleKey and not library.opening and not gpe then
@@ -785,7 +785,7 @@ function library:init()
             end
         end
     end)
-
+   print("8")
     utility:Connection(inputservice.InputChanged, function(input, gpe)
         if input.UserInputType == Enum.UserInputType.MouseMovement then
             if library.open then
