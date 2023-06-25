@@ -693,10 +693,10 @@ function library:init()
     end
    print("5")
     for i,v in next, self.images do
-        if not isfile(self.cheatname..'/assets/'..i..'.oh') then
-            writefile(self.cheatname..'/assets/'..i..'.oh', game:HttpGet(v))
+        if not isfile(self.cheatname..'/assets/'..i..'.png') then
+            writefile(self.cheatname..'/assets/'..i..'.png', game:HttpGet(v))
         end
-        self.images[i] = readfile(self.cheatname..'/assets/'..i..'.oh');
+        self.images[i] = readfile(self.cheatname..'/assets/'..i..'.png');
     end
 
     self.cursor1 = utility:Draw('Triangle', {Filled = true, Color = fromrgb(255,255,255), ZIndex = self.zindexOrder.cursor});
