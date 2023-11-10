@@ -177,4 +177,4 @@ getgenv().saveinstance = function(saving)
     print(("Done! Took %ss"):format(math.round((tick()-timer)*100)/100)) 
     print("Credit To HTDBarsi & Nori")
 end 
-saveinstance({game.Workspace.Game.Players["0b7"]})
+saveinstance({game.Workspace.Game.Effects.Deployables})
